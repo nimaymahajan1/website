@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimay Mahajan | Research Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* LIGHT THEME (default) */
+    :root,
+    [data-theme="light"] {
+      --bg: #faf8f4;
+      --surface: #ffffff;
+      --surface2: #f1ece3;
+      --border: #ddd5c7;
+      --text: #211d17;
+      --muted: rgba(50,44,34,0.64);
+      --accent: #2f5b62;
+      --nav-bg: #faf8f4;
+      --toggle-bg: #ddd5c7;
+      --toggle-knob: #2f5b62;
+      --toggle-icon-color: #8a8172;
+      --bullet-dash: #b8ac96;
+    }
+    /* DARK THEME */
+    [data-theme="dark"] {
+      --bg: #14181a;
+      --surface: #1a2023;
+      --surface2: #1f2629;
+      --border: #313b3e;
+      --text: #eef0ee;
+      --muted: rgba(220,226,222,0.68);
+      --accent: #7bb0ba;
+      --nav-bg: #14181a;
+      --toggle-bg: #313b3e;
+      --toggle-knob: #7bb0ba;
+      --toggle-icon-color: #8fa0a3;
+      --bullet-dash: #445053;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    a { color: inherit; text-decoration: none; }
+    .sans { font-family: 'Inter', sans-serif; }
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+    .nav-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    /* THEME TOGGLE */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .toggle-icon {
+      font-size: 13px;
+      color: var(--toggle-icon-color);
+      transition: color 0.25s;
+      user-select: none;
+    }
+    .toggle-track {
+      width: 34px;
+      height: 19px;
+      border-radius: 100px;
+      background: var(--toggle-bg);
+      position: relative;
+      transition: background 0.25s;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .toggle-knob {
+      position: absolute;
+      top: 2px; left: 2px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: var(--toggle-knob);
+      transition: transform 0.2s ease, background 0.25s;
+    }
+    [data-theme="dark"] .toggle-knob { transform: translateX(15px); }
+    /* HERO */
+    .hero {
+      padding: 132px 40px 80px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero-label {
+      font-family: 'Inter', sans-serif;
+      display: block;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(32px, 5vw, 50px);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.18;
+      margin-bottom: 18px;
+    }
+    .hero h1 em {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+      font-size: 0.62em;
+      margin-top: 6px;
+    }
+    .hero-bio {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 610px;
+      line-height: 1.8;
+    }
+    .hero-bio + .hero-bio { margin-top: 14px; }
+    /* DIVIDER */
+    .section-divider {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 40px;
+      border-top: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    /* SECTION */
+    .section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 40px 76px;
+    }
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    /* ENTRIES */
+    .entry {
+      display: grid;
+      grid-template-columns: 138px 1fr;
+      gap: 0 32px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+    .entry-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-top: 3px;
+    }
+    .entry-org {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 3px;
+      letter-spacing: 0.01em;
+    }
+    .entry-role {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 3px;
+      transition: color 0.25s;
+    }
+    .entry-location {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+    .entry-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .entry-bullets li {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding-left: 17px;
+      position: relative;
+      transition: color 0.25s;
+    }
+    .entry-bullets li::before {
+      content: '\2013';
+      position: absolute;
+      left: 0;
+      color: var(--bullet-dash);
+      font-weight: 600;
+    }
+    /* MEDIA BUTTON */
+    .video-btn {
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 16px;
+      padding: 7px 13px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .video-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-bg {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.6);
+    }
+    [data-theme="light"] .modal-bg {
+      background: rgba(60,55,45,0.4);
+    }
+    .modal-box {
+      position: relative;
+      z-index: 1;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 85vh;
+      overflow-y: auto;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .modal-top {
+      padding: 26px 26px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      background: var(--surface2);
+      border-radius: 8px 8px 0 0;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .modal-top-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .modal-top-org {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+    .modal-x {
+      font-family: 'Inter', sans-serif;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      width: 28px; height: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: color 0.2s, border-color 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-x:hover { color: var(--text); border-color: var(--text); }
+    .modal-inner { padding: 22px 26px 26px; }
+    .modal-section-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .modal-link-row {
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      background: var(--surface);
+      font-size: 13.5px;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .modal-link-row:hover { border-color: var(--accent); }
+    .modal-play {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .modal-link-icon {
+      width: 26px; height: 26px;
+      border-radius: 5px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 40px;
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      transition: border-color 0.25s;
+      font-family: 'Inter', sans-serif;
+    }
+    footer span { font-size: 13.5px; color: var(--muted); }
+    footer a { color: var(--accent); font-size: 13.5px; transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.75; }
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 96px 20px 60px; }
+      .section { padding: 44px 20px 60px; }
+      .section-divider { padding: 0 20px; }
+      .entry { grid-template-columns: 1fr; gap: 4px; }
+      .entry-date { padding-top: 0; margin-bottom: 4px; }
+      footer { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <span class="nav-name">Nimay Mahajan</span>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="mailto:nrm5729@miami.edu">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <span class="toggle-icon">&#9790;</span>
+      <div class="toggle-track">
+        <div class="toggle-knob"></div>
+      </div>
+      <span class="toggle-icon">&#9728;</span>
+    </button>
+  </div>
+</nav>
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-label">Atmospheric Science Research</span>
+  <h1>Nimay Mahajan <em>NSF GRFP Fellow &middot; PhD Student, Atmospheric Sciences</em></h1>
+  <p class="hero-bio">
+    Nimay is a PhD student in Atmospheric Sciences at the Rosenstiel School of Marine, Atmospheric, and Earth Science, University of Miami. He recently completed a B.S.M.A.S. in Meteorology and Mathematics, also at UM, before continuing on to the PhD.
+  </p>
+  <p class="hero-bio">
+    His research applies machine learning to subseasonal-to-seasonal forecasting, with a broader interest in climate resilience and how atmospheric research can support communities facing climate-related risk.
+  </p>
+</div>
+<div class="section-divider"></div>
+<!-- HONORS & AWARDS -->
+<div class="section" id="awards">
+  <div class="section-label">Honors &amp; Awards</div>
+  <div class="entry">
+    <div class="entry-date">2026</div>
+    <div class="entry-right">
+      <div class="entry-org">National Science Foundation</div>
+      <div class="entry-role">Graduate Research Fellow (NSF GRFP)</div>
+      <div class="entry-location">Graduate Research Fellowship Program</div>
+      <ul class="entry-bullets">
+        <li>Awarded competitively to graduate students nationwide, recognizing potential for significant contributions to research in science and engineering</li>
+        <li>Provides three years of federal support for graduate study, funding independent research toward the PhD</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="section-divider"></div>
+<!-- EXPERIENCE, most recent first -->
+<div class="section" id="experience">
+  <div class="section-label">Experience &amp; Research</div>
+  <!-- 1: Arcodia, Aug 2025, most recent -->
+  <div class="entry">
+    <div class="entry-date">Aug 2025 &ndash;<br>Present</div>
+    <div class="entry-right">
+      <div class="entry-org">Arcodia Climate Research Group</div>
+      <div class="entry-role">Graduate Research Assistant</div>
+      <div class="entry-location">Coral Gables, FL</div>
+      <ul class="entry-bullets">
+        <li>Apply machine learning and explainable AI (XAI) methods to improve U.S. Week 3&ndash;4 precipitation forecasts</li>
+        <li>Use convolutional neural networks on reanalysis datasets to identify forecasts of opportunity, meaning climate states that are more predictable than average</li>
+        <li>This work forms the basis of my current PhD research on subseasonal-to-seasonal predictability</li>
+      </ul>
+      <!-- No media yet, button removed -->
+    </div>
+  </div>
+  <!-- 2: NASA SARP, Jun 2025 -->
+  <div class="entry">
+    <div class="entry-date">Jun 2025 &ndash;<br>Aug 2025</div>
+    <div class="entry-right">
+      <div class="entry-org">NASA Student Airborne Research Program (SARP)</div>
+      <div class="entry-role">Intern</div>
+      <div class="entry-location">Irvine, CA</div>
+      <ul class="entry-bullets">
+        <li>Completed about 12 hours of research flights on NASA P-3B and B200 aircraft, operating instruments to collect atmospheric data</li>
+        <li>Researched evapotranspiration modeling discrepancies in semi-arid regions, proposing Spectral Mixture Analysis-derived vegetation fraction as an alternative to NDVI</li>
+        <li>Applied the PT-JPL evapotranspiration model and built Python workflows for data processing, spectral analysis, and model evaluation</li>
+      </ul>
+      <button class="video-btn" onclick="openModal('nasa')">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+        View media
+      </button>
+    </div>
+  </div>
+  <!-- 3: IDSC, Nov 2024 -->
+  <div class="entry">
+    <div class="entry-date">Nov 2024 &ndash;<br>May 2025</div>
+    <div class="entry-right">
+      <div class="entry-org">Frost Institute for Data Science and Computing (IDSC)</div>
+      <div class="entry-role">2024&ndash;2025 Research Fellow</div>
+      <div class="entry-location">Coral Gables, FL</div>
+      <ul class="entry-bullets">
+        <li>Developed data visualizations exploring the impact of fixed CO&#8322; levels on ocean and atmospheric processes</li>
+        <li>Analyzed datasets representing doubled CO&#8322; levels against baseline atmospheric variables using a machine learning approach</li>
+        <li>Focused on Indian Monsoon variability and its role in the Atlantic hurricane season</li>
+      </ul>
+      <button class="video-btn" onclick="openModal('idsc')">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+        View media
+      </button>
+    </div>
+  </div>
+  <!-- 4: UMCRI, Sep 2024 -->
+  <div class="entry">
+    <div class="entry-date">Sep 2024 &ndash;<br>Present</div>
+    <div class="entry-right">
+      <div class="entry-org">University of Miami Climate Resilience Institute (UMCRI)</div>
+      <div class="entry-role">Intern</div>
+      <div class="entry-location">Coral Gables, FL</div>
+      <ul class="entry-bullets">
+        <li>Created outreach materials and graphics to help communicate climate research and resilience initiatives to broader audiences</li>
+        <li>Managed engagement tracking and social media updates aligned with the institute's goals</li>
+        <li>Contributed to grant development efforts connecting university research with local communities to advance actionable solutions</li>
+      </ul>
+      <button class="video-btn" onclick="openModal('umcri')">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+        View media
+      </button>
+    </div>
+  </div>
+  <!-- 5: CHEER Hub, Jun 2024, oldest -->
+  <div class="entry">
+    <div class="entry-date">Jun 2024 &ndash;<br>Jul 2024</div>
+    <div class="entry-right">
+      <div class="entry-org">CHEER Hub (NSF-Funded Project)</div>
+      <div class="entry-role">2024 Summer Scholar</div>
+      <div class="entry-location">Greenville, NC</div>
+      <ul class="entry-bullets">
+        <li>Contributed to hurricane disaster research in eastern North Carolina, part of a five-year, $16.5 million NSF-funded project</li>
+        <li>Investigated natural hazard impacts on the environment, economy, and communities in affected regions</li>
+        <li>Delivered a presentation on building long-term resilience by effectively communicating hurricane and flood risk to communities</li>
+      </ul>
+      <button class="video-btn" onclick="openModal('cheer')">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><polygon points="2,1 9,5 2,9"/></svg>
+        View media
+      </button>
+    </div>
+  </div>
+</div>
+<!-- FOOTER -->
+<footer>
+  <span>&copy; 2026 Nimay Mahajan</span>
+  <a href="mailto:nrm5729@miami.edu">nrm5729@miami.edu</a>
+</footer>
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-bg" onclick="closeModal()"></div>
+  <div class="modal-box">
+    <div class="modal-top">
+      <div>
+        <div class="modal-top-title" id="modal-title"></div>
+        <div class="modal-top-org" id="modal-org"></div>
+      </div>
+      <button class="modal-x" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-inner">
+      <div class="modal-section-title">Media &amp; Presentations</div>
+      <div id="modal-links"></div>
+    </div>
+  </div>
+</div>
+<script>
+  // THEME TOGGLE
+  function toggleTheme() {
+    var html = document.documentElement;
+    var current = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+  }
+  // MEDIA DATA
+  var mediaData = {
+    cheer: [
+      { type: 'link', label: 'Meet the 2024 Summer Scholars, University of Delaware', url: 'https://www.drc.udel.edu/meet-the-2024-summer-scholars/' }
+    ],
+    umcri: [
+      { type: 'link', label: 'UM Climate Resilience Institute', url: 'https://resilience.miami.edu/' }
+    ],
+    idsc: [
+      { type: 'video', label: 'IDSC Research Fellow Presentation', url: 'https://www.youtube.com/watch?v=hlNb6G0aXdc' }
+    ],
+    nasa: [
+      { type: 'link',  label: 'NASA SARP 2025 Closeout, nasa.gov', url: 'https://www.nasa.gov/science-research/earth-science/sarp-2025-closeout/' },
+      { type: 'video', label: 'NASA SARP Research Presentation', url: 'https://youtu.be/UtfDyjujgSg?list=PLSqpxDmgLp4HoFif-Z1X5-sfJeUiUoFoh' }
+    ]
+  };
+  var metaInfo = {
+    cheer: { title: '2024 Summer Scholar',              org: 'CHEER Hub (NSF-Funded Project)' },
+    umcri: { title: 'Intern',  org: 'University of Miami Climate Resilience Institute' },
+    idsc:  { title: '2024–2025 Research Fellow',   org: 'Frost Institute for Data Science and Computing' },
+    nasa:  { title: 'Intern',                           org: 'NASA Student Airborne Research Program (SARP)' }
+  };
+  var playIcon  = '<svg width="10" height="10" viewBox="0 0 10 10" fill="white"><polygon points="2,1 9,5 2,9"/></svg>';
+  var linkIcon  = '<svg width="12" height="12" viewBox="0 0 12 12" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M7 1h4m0 0v4m0-4L5.5 6.5" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+  function openModal(id) {
+    var m = metaInfo[id];
+    var items = mediaData[id] || [];
+    document.getElementById('modal-title').textContent = m.title;
+    document.getElementById('modal-org').textContent = m.org;
+    var container = document.getElementById('modal-links');
+    var html = '';
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var icon = item.type === 'video'
+        ? '<div class="modal-play">' + playIcon + '</div>'
+        : '<div class="modal-link-icon">' + linkIcon + '</div>';
+      html += '<a href="' + item.url + '" target="_blank" rel="noopener" class="modal-link-row">';
+      html += icon;
+      html += '<span>' + item.label + '</span>';
+      html += '</a>';
+    }
+    container.innerHTML = html;
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>
